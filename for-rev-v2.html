@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#06030a">
+<title>For Rev 🦇</title>
+<style>
+:root{--bg:#06030a;--red:#b0112b;--glow:#ff2a4d;--gold:#e8c27a;--txt:#f3e8d8}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--txt);font-family:Georgia,'Times New Roman',serif;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#bg{position:fixed;inset:0;width:100%;height:100%}
+.vig{position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.82))}
+.moon{position:fixed;top:calc(7% + env(safe-area-inset-top,0px));right:8%;width:min(24vw,120px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fffbe8,#f0cf8c 60%,#c99a52);box-shadow:0 0 70px 24px rgba(232,194,122,.32);animation:pulse 6s ease-in-out infinite;pointer-events:none;transition:background .8s,box-shadow .8s}
+.moon.blood{background:radial-gradient(circle at 30% 30%,#ff7a7a,#b0112b 60%,#5a0612);box-shadow:0 0 120px 40px rgba(255,42,77,.5)}
+.moon::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 60% 40%,rgba(120,80,30,.35) 0 8%,transparent 9%),radial-gradient(circle at 35% 65%,rgba(120,80,30,.3) 0 11%,transparent 12%)}
+@keyframes pulse{50%{box-shadow:0 0 110px 38px rgba(255,120,120,.4)}}
+.yard{position:fixed;left:0;bottom:0;width:100%;height:26vh;pointer-events:none}
+#dots{position:fixed;top:calc(14px + env(safe-area-inset-top,0px));left:0;right:0;display:flex;justify-content:center;gap:7px;z-index:5}
+.dot{width:22px;height:4px;border-radius:2px;background:rgba(255,255,255,.14);transition:.6s}.dot.on{background:var(--glow);box-shadow:0 0 10px var(--glow)}
+.scene{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:64px 22px 30px;text-align:center;opacity:0;visibility:hidden;transform:translateY(24px) scale(.97);filter:blur(8px);transition:opacity .9s,transform .9s,filter .9s,visibility .9s;overflow-y:auto}
+.scene.on{opacity:1;visibility:visible;transform:none;filter:none}
+h1,h2{font-weight:normal;letter-spacing:.06em;margin:.15em 0;text-shadow:0 0 22px var(--glow)}
+h1{font-size:clamp(2.6rem,13vw,4.4rem)}h2{font-size:clamp(1.6rem,7vw,2.4rem);color:var(--gold)}
+p{max-width:30ch;line-height:1.6;font-size:clamp(1.02rem,4.2vw,1.2rem);margin:.5em 0 1.6em;color:#e6d8c6}
+button{font:inherit;color:var(--txt);background:linear-gradient(#8a0e24,#4a0713);border:1px solid var(--glow);border-radius:999px;padding:.9em 2em;min-height:52px;cursor:pointer;font-size:1.08rem;letter-spacing:.04em;animation:btn 2.4s ease-in-out infinite}
+@keyframes btn{50%{box-shadow:0 0 30px var(--glow)}}
+button:active{transform:scale(.95)}
+button[hidden]{display:none}
+/* silhouettes */
+.cast{display:flex;gap:min(5vw,22px);align-items:flex-end;justify-content:center;margin:6px 0 10px}
+.cast figure{margin:0;cursor:pointer;animation:sway 4s ease-in-out infinite;transition:transform .3s}
+.cast figure:nth-child(2){animation-delay:-1.3s}.cast figure:nth-child(3){animation-delay:-2.6s}
+@keyframes sway{50%{transform:translateY(-9px)}}
+.cast svg{width:min(28vw,125px);overflow:visible;background:radial-gradient(circle at 50% 38%,rgba(255,70,100,.3),transparent 68%)}
+.cast figure:nth-child(1) svg{filter:drop-shadow(0 0 9px #ff2a4d)}.cast figure:nth-child(2) svg{filter:drop-shadow(0 0 9px #7fd0ff)}.cast figure:nth-child(3) svg{filter:drop-shadow(0 0 9px #e8c27a)}
+.cast figcaption{font-size:.8rem;color:var(--gold);margin-top:4px;letter-spacing:.1em}
+.cast figure.woke svg{filter:drop-shadow(0 0 22px #fff)}
+.eye{animation:blink 3.4s infinite}@keyframes blink{46%,54%{opacity:.15}}
+#whisper{min-height:3.4em;color:var(--gold);font-style:italic;max-width:32ch;margin:.4em 0 1em;transition:opacity .4s}
+/* heartbeat */
+.hold{width:150px;height:150px;border-radius:50%;border:0;padding:0;background:conic-gradient(var(--glow) var(--p,0deg),rgba(255,255,255,.12) 0);display:grid;place-items:center;position:relative;touch-action:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;margin:6px 0 18px;animation:none}
+.hold::before{content:'';position:absolute;inset:9px;border-radius:50%;background:#14060d}
+.hold span{position:relative;font-size:3rem;animation:beat 1s infinite;filter:drop-shadow(0 0 14px var(--glow))}
+@keyframes beat{15%{transform:scale(1.3)}30%{transform:scale(1)}45%{transform:scale(1.2)}}
+.shake{animation:shk .35s}@keyframes shk{20%{transform:translate(-6px,3px)}40%{transform:translate(6px,-3px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(4px,2px)}}
+/* eyes + fangs */
+.eyes{display:flex;gap:min(10vw,44px);margin:10px 0 14px}
+.eyes i{display:block;width:min(26vw,110px);height:min(11vw,46px);border-radius:50%;background:radial-gradient(ellipse,#fff 0 10%,var(--glow) 30%,#6b0010 70%,transparent 72%);box-shadow:0 0 40px 10px rgba(255,42,77,.7);transform:scaleY(.04)}
+.scene.on .eyes i{animation:open 1.8s .5s cubic-bezier(.2,.8,.2,1) forwards}@keyframes open{to{transform:scaleY(1)}}
+.fangs{width:min(46vw,170px);margin:0 0 14px;cursor:pointer}
+.fangs path{transition:transform .3s}
+.fangs.bite .f1{transform:translateY(14px)}.fangs.bite .f2{transform:translateY(14px)}
+/* candles */
+.candles{display:flex;gap:min(8vw,34px);margin:8px 0 18px}
+.cd{font-size:3.2rem;cursor:pointer;filter:grayscale(1) brightness(.5);transition:.4s;-webkit-user-select:none;user-select:none}
+.cd.lit{filter:none;animation:flick .4s infinite alternate}
+@keyframes flick{to{transform:scale(1.08) rotate(2deg);filter:drop-shadow(0 0 16px #ffb347)}}
+/* envelope */
+.env{position:relative;width:min(76vw,300px);height:min(50vw,196px);background:linear-gradient(#a3122c,#5e0a19);border-radius:8px;cursor:pointer;box-shadow:0 0 50px rgba(255,42,77,.45);animation:fl 3s ease-in-out infinite;perspective:600px}
+@keyframes fl{50%{transform:translateY(-10px)}}
+.flap{position:absolute;top:0;left:0;right:0;height:62%;background:#b8162f;clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .9s}
+.env.open .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:50%;width:56px;height:56px;margin:-28px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#f5d98f,#b98a2e);display:grid;place-items:center;font-size:1.6rem;box-shadow:0 0 18px rgba(232,194,122,.7);transition:opacity .4s}
+.env.open .seal{opacity:0}
+#hint{margin-top:22px;animation:btn 2s infinite;color:var(--gold)}
+#lw{display:none;width:100%;max-width:560px;animation:rise .9s both}@keyframes rise{from{opacity:0;transform:translateY(40px)}}
+.paper{width:100%;max-height:50vh;max-height:50dvh;overflow:auto;text-align:left;background:linear-gradient(#f4e6c8,#dcc79c);color:#3a2616;border-radius:6px;padding:20px 22px;box-shadow:0 0 44px rgba(232,194,122,.38);font-size:clamp(.98rem,3.9vw,1.1rem);line-height:1.65;white-space:pre-wrap;font-style:italic;-webkit-overflow-scrolling:touch}
+.tabs{display:flex;gap:10px;margin-top:14px;justify-content:center}.tabs button{animation:none;padding:.55em 1.1em;min-height:44px;font-size:.92rem;opacity:.55}.tabs button.sel{opacity:1;box-shadow:0 0 16px var(--glow)}
+#resp{display:none;margin-top:16px}#resp.show{display:block;animation:rise .9s both}
+#resp .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}#resp button{animation:none;font-size:.98rem}
+#msg{margin-top:14px;color:var(--gold);font-size:1.1rem;min-height:1.4em}
+#skip{font-size:.8rem;color:#a89a88;margin-top:8px;min-height:1em}
+.spark{position:fixed;width:6px;height:6px;margin:-3px;border-radius:50%;background:var(--glow);box-shadow:0 0 10px var(--glow);pointer-events:none;z-index:9;animation:sp .8s forwards}@keyframes sp{to{transform:translateY(30px) scale(0);opacity:0}}
+
+.porch{position:fixed;left:50%;bottom:6vh;width:min(90vw,520px);height:34vh;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse at 50% 90%,rgba(255,170,70,.28),transparent 65%);animation:lamp 3s infinite alternate;opacity:0;transition:opacity 1s}
+body.s1 .porch{opacity:1}@keyframes lamp{40%{opacity:.7}to{filter:brightness(1.3)}}
+.ground{position:fixed;left:-10%;bottom:0;width:120%;height:18vh;pointer-events:none;background:linear-gradient(transparent,rgba(120,100,160,.2));filter:blur(10px);animation:gf 14s ease-in-out infinite alternate}
+@keyframes gf{to{transform:translateX(6%)}}
+.addpic{display:inline-block;font-size:.82rem;color:var(--gold);border:1px dashed var(--gold);border-radius:999px;padding:.5em 1.1em;margin-bottom:1em;cursor:pointer}
+.photo{width:min(34vw,130px);aspect-ratio:3/4;margin:0 0 .8em;border:2px solid var(--gold);border-radius:6px;overflow:hidden;box-shadow:0 0 28px rgba(255,42,77,.6);animation:sway 4s infinite}
+.photo[hidden]{display:none}
+.photo img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) contrast(1.1) sepia(.3)}
+</style></head><body>
+<canvas id="bg"></canvas><div class="moon" id="moon"></div>
+<svg class="yard" viewBox="0 0 400 120" preserveAspectRatio="xMidYMax slice"><path fill="#030206" d="M0 120V92C40 86 80 94 130 90S250 84 300 90S370 88 400 92V120z"/><g fill="#030206"><path d="M40 96V74q0-9 9-9t9 9v22z"/><path d="M96 98V80h-4v-4h4v-6h4v6h4v4h-4v18z"/><path d="M180 92V72q0-8 8-8t8 8v20z"/><path d="M250 94V78q0-8 8-8t8 8v16z"/></g><g fill="none" stroke="#030206" stroke-width="3" stroke-linecap="round"><path d="M330 94V40M330 70l-18-14l-4-10M330 56l16-16l2-12M330 80l14-8M330 48l-8-12"/><path d="M20 94V50M20 74l-12-10M20 60l12-14"/></g></svg>
+<div class="porch"></div><div class="ground"></div><div class="vig"></div><div id="dots"></div>
+
+<section class="scene on"><h1>For Rev</h1><p>Something is waiting for you in the dark… (tap anywhere to wake the bats)</p><button data-go>Tap to become a vampire 🦇</button></section>
+
+<section class="scene"><div class="cast">
+<figure data-w="“Some people spend a hundred years being the villain. The brave ones spend one night saying sorry.”"><svg viewBox="0 0 100 120"><path fill="#0d0612" d="M50 6C38 5 31 14 33 26C34 30 36 32 38 33C36 38 40 46 50 46C60 46 64 38 62 33C64 32 66 30 67 26C69 14 62 5 50 6zM30 56L42 46L50 54L58 46L70 56L78 62L86 120H14L22 62z"/><path fill="#1a0a14" d="M42 46L50 70L58 46L50 54z"/><circle class="eye" cx="43" cy="30" r="2.8" fill="#ff2a4d"/><circle class="eye" cx="57" cy="30" r="2.8" fill="#ff2a4d"/></svg><figcaption>THE REBEL</figcaption></figure>
+<figure data-w="“Being good isn't easy. But a friend worth keeping is worth every bit of that effort.”"><svg viewBox="0 0 100 120"><path fill="#0d0612" d="M50 9C40 9 34 17 35 28C36 38 42 46 50 46C58 46 64 38 65 28C66 17 60 9 50 9zM36 30C33 36 32 42 34 48C37 46 39 44 40 40zM64 30C67 36 68 42 66 48C63 46 61 44 60 40zM32 58L42 47L50 52L58 47L68 58C74 78 80 100 84 120H16C20 100 26 78 32 58z"/><path fill="#0d0612" d="M44 47H56L60 66H40z"/><circle class="eye" cx="43" cy="29" r="2.8" fill="#7fd0ff"/><circle class="eye" cx="57" cy="29" r="2.8" fill="#7fd0ff"/></svg><figcaption>THE CONSCIENCE</figcaption></figure>
+<figure data-w="“Forgiveness isn't forgetting. It's choosing the people you love again.”"><svg viewBox="0 0 100 120"><path fill="#0d0612" d="M50 8C39 8 33 17 34 28C35 38 41 46 50 46C59 46 65 38 66 28C67 17 61 8 50 8zM34 26C26 44 22 70 14 108L28 112C30 94 34 76 38 58zM66 26C74 44 78 70 86 108L72 112C70 94 66 76 62 58zM41 47H59L68 66L76 120H24L32 66z"/><circle cx="82" cy="78" r="7" fill="#e8c27a" opacity=".95"/><rect x="79" y="70" width="6" height="3" fill="#0d0612"/><circle class="eye" cx="43" cy="29" r="2.8" fill="#e8c27a"/><circle class="eye" cx="57" cy="29" r="2.8" fill="#e8c27a"/></svg><figcaption>THE LANTERN</figcaption></figure></div>
+<div id="whisper">Tap a silhouette to hear what it whispers…</div>
+<div class="photo" id="photo" hidden><img id="pimg" alt=""></div>
+<label class="addpic">+ Add your own picture<input type="file" id="pfile" accept="image/*" hidden></label>
+<h2>A town after dark</h2><p>Three figures step out of the fog, a porch light flickering behind them.</p><button data-go>Step closer</button></section>
+
+<section class="scene"><h2>Feel your heartbeat</h2><p>Press and hold. Let the change begin.</p><button class="hold" id="hold" aria-label="Hold to transform"><span>🩸</span></button></section>
+
+<section class="scene"><div class="eyes"><i></i><i></i></div>
+<svg class="fangs" id="fangs" viewBox="0 0 160 70"><path d="M10 14Q80 -4 150 14Q80 40 10 14z" fill="#3a0612" stroke="#ff2a4d" stroke-width="2"/><path class="f1" d="M54 18L62 18L58 46z" fill="#fff"/><path class="f2" d="M98 18L106 18L102 46z" fill="#fff"/></svg>
+<h2>Your eyes open</h2><p>The world is sharper now. Louder. Brighter. You're one of them. (Tap the fangs.)</p><button data-go>Keep walking</button></section>
+
+<section class="scene"><div class="candles" id="candles"><span class="cd">🕯️</span><span class="cd">🕯️</span><span class="cd">🕯️</span></div><h2>Light the candles</h2><p id="cp">Three candles guard something for you. Tap each one to light it.</p><button data-go id="cbtn" hidden>Follow the light</button></section>
+
+<section class="scene"><div class="env" id="env"><div class="flap"></div><div class="seal">🦇</div></div><p id="hint">Tap the envelope</p>
+<div id="lw"><div class="paper" id="paper"></div><div id="skip">tap the letter to skip the typing</div><div class="tabs"><button class="sel" data-l="0">Exorted's letter</button><button data-l="1">Innocent's letter</button></div>
+<div id="resp"><div class="row"><button id="yes">I forgive you 🩸</button><button id="time">I need some time</button></div></div><div id="msg"></div></div></section>
+
+<script>
+const L=[
+`Rev,
+
+I'm so sorry. You deserve a proper apology, not a quick "my bad," so I'm taking my time with this.
+
+I know I once called you dumb, and later I said I hate dumb people. I understand exactly how those two things sat together in your mind, and why you ended up hearing "you hate me." That's a horrible thing to hear, and I'm sorry my words put you there.
+
+I should have been so much more careful.
+
+What I actually meant is people who refuse to change, who won't listen and won't grow. That has never been you. You're the exception, completely. You grow, you care, and you feel things deeply, and I would never want to hurt that.
+
+I'm not going to say you were overthinking. You weren't. You heard what I said and connected it the way anyone would. The mistake was mine, and I own it.
+
+You matter to me, and our friendship matters to me. I'd really like to make it right.
+
+Forgive me?
+
+— Exorted`,
+`Rev,
+
+I'm so sorry. This time it was genuinely my mistake, and I want you to know I mean that.
+
+When you were upset, I told you that you were overthinking. I see now that it made you feel brushed off instead of heard, and that was never what I wanted. Your feelings are real, and they deserved more care from me.
+
+I'd really appreciate it if you could forgive me this time. I'm going to try hard to make sure it doesn't happen again, and to listen better the next time something hurts.
+
+You're important to both of us, and we'd hate to lose you over a misunderstanding.
+
+Love,
+Innocent`];
+const $=s=>document.querySelector(s),R=Math.random,vib=p=>{try{navigator.vibrate&&navigator.vibrate(p)}catch(e){}};
+const S=[...document.querySelectorAll('.scene')],dots=$('#dots');let i=0;
+S.forEach(()=>dots.appendChild(Object.assign(document.createElement('div'),{className:'dot'})));
+function go(n){S[i].classList.remove('on');i=n;S[i].classList.add('on');[...dots.children].forEach((d,k)=>d.classList.toggle('on',k<=i));$('#moon').classList.toggle('blood',i>=3);document.body.classList.toggle('s1',i==1);vib(15)}
+go(0);
+document.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>go(i+1));
+/* canvas */
+const c=$('#bg'),x=c.getContext('2d');let W,H,D;
+function rs(){D=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;c.width=W*D;c.height=H*D;x.setTransform(D,0,0,D,0,0)}
+addEventListener('resize',rs);rs();
+const stars=[...Array(100)].map(()=>({x:R()*W,y:R()*H*.65,r:R()*1.4+.3,p:R()*6}));
+const fog=[...Array(6)].map(()=>({x:R()*W,y:H*(.5+R()*.5),r:W*(.5+R()*.5),v:(R()-.5)*.3}));
+const nb=(sx,sy)=>({x:sx??-50-R()*W,y:sy??H*(.08+R()*.5),s:.6+R()*1.1,v:.8+R()*1.6,f:R()*6,w:R()*6,t:sx!=null});
+const bats=[...Array(8)].map(()=>nb());
+const em=[...Array(45)].map(()=>({x:R()*W,y:R()*H,v:.3+R()*.8,r:R()*2+.8,p:R()*6}));
+const np=f=>({x:R()*W,y:f?R()*H:-20,v:.6+R()*.9,a:R()*6,s:5+R()*5,d:(R()-.5)*.05,w:R()*6});
+const pet=[...Array(16)].map(()=>np(1));let bp=[],fl=0,bolt=null,nx=3000;
+function mkBolt(){let px=W*(.15+R()*.7),py=0,a=[[px,py]];while(py<H*.55){px+=(R()-.5)*50;py+=20+R()*30;a.push([px,py])}return a}
+function bat(b){x.save();x.translate(b.x,b.y);x.scale(b.s,b.s);x.fillStyle='#050208';x.shadowColor='#ff2a4d';x.shadowBlur=6;const a=Math.sin(b.f)*.7;x.beginPath();x.moveTo(0,0);x.quadraticCurveTo(-10,-14-a*10,-28,-4+a*14);x.quadraticCurveTo(-18,0,-14,4);x.quadraticCurveTo(-8,0,0,6);x.quadraticCurveTo(8,0,14,4);x.quadraticCurveTo(18,0,28,-4+a*14);x.quadraticCurveTo(10,-14-a*10,0,0);x.fill();x.restore()}
+function loop(t){
+const g=x.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0c0618');g.addColorStop(.7,'#1b0711');g.addColorStop(1,'#06030a');x.fillStyle=g;x.fillRect(0,0,W,H);
+stars.forEach(s=>{x.globalAlpha=.3+.7*Math.abs(Math.sin(t/900+s.p));x.fillStyle='#fff';x.beginPath();x.arc(s.x,s.y,s.r,0,7);x.fill()});x.globalAlpha=1;
+fog.forEach(f=>{f.x+=f.v;if(f.x>W+f.r)f.x=-f.r;if(f.x<-f.r)f.x=W+f.r;const q=x.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r);q.addColorStop(0,'rgba(176,17,43,.2)');q.addColorStop(.6,'rgba(90,70,130,.08)');q.addColorStop(1,'transparent');x.fillStyle=q;x.fillRect(0,0,W,H)});
+em.forEach(e=>{e.y-=e.v;e.x+=Math.sin(t/700+e.p)*.4;if(e.y<-10){e.y=H+10;e.x=R()*W}x.globalAlpha=.4+.5*Math.abs(Math.sin(t/500+e.p));x.fillStyle='#ff4d4d';x.shadowColor='#ff2a4d';x.shadowBlur=8;x.beginPath();x.arc(e.x,e.y,e.r,0,7);x.fill()});x.shadowBlur=0;x.globalAlpha=1;
+pet.forEach((p,k)=>{p.y+=p.v;p.x+=Math.sin(t/900+p.w)*.7;p.a+=p.d*3;if(p.y>H+20)pet[k]=np(0);x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle='#a30f28';x.beginPath();x.ellipse(0,0,p.s*.45,p.s,0,0,7);x.fill();x.restore()});
+bats.forEach((b,k)=>{b.x+=b.v;b.f+=.25;b.w+=.03;b.y+=Math.sin(b.w)*.6-(b.t?.5:0);if(b.x>W+60||b.y<-60){if(b.t)bats.splice(k,1);else bats[k]=nb()}else bat(b)});
+bp=bp.filter(p=>p.l>0);bp.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.06;p.l-=.012;x.globalAlpha=Math.max(p.l,0);x.fillStyle=p.c;x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()});x.globalAlpha=1;
+if(t>nx){fl=1;nx=t+6000+R()*9000;bolt=R()<.6?mkBolt():null}
+if(fl>0){x.fillStyle=`rgba(200,190,255,${Math.min(fl,1)*.22})`;x.fillRect(0,0,W,H);if(bolt){x.strokeStyle=`rgba(230,225,255,${Math.min(fl,1)})`;x.lineWidth=2;x.shadowColor='#bbaaff';x.shadowBlur=14;x.beginPath();bolt.forEach((q,k)=>k?x.lineTo(q[0],q[1]):x.moveTo(q[0],q[1]));x.stroke();x.shadowBlur=0}fl-=.035}
+requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+function burst(px=W/2,py=H*.55,n=110){for(let k=0;k<n;k++){const a=R()*6.28,v=2+R()*6;bp.push({x:px,y:py,vx:Math.cos(a)*v,vy:Math.sin(a)*v-3,r:2+R()*3,l:1,c:R()<.5?'#ff2a4d':'#e8c27a'})}}
+/* blood-drop trail + tap summons bats */
+addEventListener('pointermove',e=>{const s=document.createElement('div');s.className='spark';s.style.left=e.clientX+'px';s.style.top=e.clientY+'px';document.body.appendChild(s);setTimeout(()=>s.remove(),800)});
+addEventListener('pointerdown',e=>{if(e.target.closest('button,.paper,.env'))return;for(let k=0;k<3;k++){const b=nb(e.clientX,e.clientY);b.v=-2+R()*4;b.s=.5+R()*.5;bats.push(b)}});
+/* silhouettes whisper */
+const wh=$('#whisper');
+document.querySelectorAll('.cast figure').forEach(f=>f.onclick=()=>{document.querySelectorAll('.cast figure').forEach(z=>z.classList.remove('woke'));f.classList.add('woke');wh.style.opacity=0;setTimeout(()=>{wh.textContent=f.dataset.w;wh.style.opacity=1},250);fl=1;bolt=null;vib(25)});
+/* own picture (stays on this device) */
+$('#pfile').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$('#pimg').src=r.result;$('#photo').hidden=false;fl=1;vib(30)};r.readAsDataURL(f)};
+/* hold to transform */
+const hb=$('#hold');let hp=0,hold=false,hr=0;
+function ht(){if(hold){hp+=.011;if(hp>.5&&Math.round(hp*100)%8==0)vib(10);if(hp>=1){hold=false;hp=0;hb.style.setProperty('--p','0deg');vib(250);fl=1.5;bolt=null;document.body.classList.add('shake');setTimeout(()=>document.body.classList.remove('shake'),400);go(3);return}}else hp=Math.max(0,hp-.03);hb.style.setProperty('--p',hp*360+'deg');if(hp>0)hr=requestAnimationFrame(ht)}
+hb.onpointerdown=e=>{e.preventDefault();hold=true;vib([30,70,30,70,30]);cancelAnimationFrame(hr);hr=requestAnimationFrame(ht)};
+['pointerup','pointerleave','pointercancel'].forEach(n=>hb.addEventListener(n,()=>hold=false));
+hb.oncontextmenu=e=>e.preventDefault();
+/* fangs */
+$('#fangs').onclick=function(){this.classList.add('bite');vib([40,30,80]);const r=this.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,40);setTimeout(()=>this.classList.remove('bite'),500)};
+/* candles */
+let lit=0;document.querySelectorAll('.cd').forEach(el=>el.onclick=()=>{if(el.classList.contains('lit'))return;el.classList.add('lit');lit++;vib(30);const r=el.getBoundingClientRect();burst(r.left+r.width/2,r.top,20);$('#cp').textContent=lit<3?`${lit} of 3 lit…`:'The darkness parts. Something is waiting for you.';if(lit==3)$('#cbtn').hidden=false});
+/* letters */
+let t0,cur=0;const paper=$('#paper'),seen=new Set();
+function type(n){clearInterval(t0);cur=n;let k=0;const s=L[n];paper.textContent='';paper.scrollTop=0;
+t0=setInterval(()=>{k+=2;paper.textContent=s.slice(0,k);paper.scrollTop=paper.scrollHeight;if(k>=s.length){clearInterval(t0);done(n)}},22)}
+function done(n){seen.add(n);if(seen.size==2)$('#resp').classList.add('show')}
+$('#env').onclick=()=>{vib(30);$('#env').classList.add('open');$('#hint').style.display='none';burst(W/2,H/2,50);setTimeout(()=>{$('#env').style.display='none';$('#lw').style.display='block';type(0)},950)};
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(z=>z.classList.remove('sel'));b.classList.add('sel');type(+b.dataset.l)});
+paper.onclick=()=>{clearInterval(t0);paper.textContent=L[cur];done(cur)};
+$('#yes').onclick=()=>{burst();vib([60,40,60]);$('#msg').textContent='Thank you, Rev. 🦇 Always your friend.'};
+$('#time').onclick=()=>{$('#msg').textContent='Take all the time you need. We\'ll be here when you\'re ready. 🕯️'};
+</script></body></html>
